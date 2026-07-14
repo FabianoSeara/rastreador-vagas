@@ -21,6 +21,14 @@ Um rastreador de candidaturas de emprego construído em React. Permite registrar
 
 Projeto criado durante minha jornada de estudos em programação, unindo aprendizado prático de React com uma ferramenta real para organizar minha própria busca por emprego.
 
+## 🤖 Sobre o desenvolvimento
+
+Este projeto foi construído com apoio do Claude AI (Anthropic) durante meus 
+estudos de React. Usei a IA para gerar a estrutura inicial da aplicação e, 
+a partir daí, dediquei tempo a entender cada parte do código — hooks, 
+gerenciamento de estado, persistência de dados — para conseguir explicar 
+e evoluir o projeto por conta própria.
+
 ## 🚀 Como rodar localmente
 
 ```bash
