@@ -37,4 +37,4 @@ npm run dev
 
 ---
 
-Feito por [seu nome aqui] como parte dos estudos em desenvolvimento web.
+Feito por Fabianocomo parte dos estudos em desenvolvimento web.
