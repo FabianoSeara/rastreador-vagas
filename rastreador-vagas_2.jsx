@@ -27,6 +27,7 @@ export default function JobTracker() {
   const [filter, setFilter] = useState("todos");
   const [query, setQuery] = useState("");
   const [saveError, setSaveError] = useState(false);
+  const [formError, setFormError] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -51,9 +52,12 @@ export default function JobTracker() {
     }
   }
 
-  function addJob(e) {
-    e.preventDefault();
-    if (!form.empresa.trim() || !form.cargo.trim()) return;
+  function addJob() {
+    if (!form.empresa.trim() || !form.cargo.trim()) {
+      setFormError("Preencha ao menos Empresa e Cargo para adicionar.");
+      return;
+    }
+    setFormError("");
     const next = [{ ...form, id: uid() }, ...jobs];
     persist(next);
     setForm(emptyForm());
@@ -209,18 +213,23 @@ export default function JobTracker() {
       {/* Modal form */}
       {showForm && (
         <div style={{ position: "fixed", inset: 0, background: "rgba(32,38,31,0.45)", display: "flex", alignItems: "center", justifyContent: "center", padding: 20, zIndex: 10 }}>
-          <form onSubmit={addJob} style={{ background: "#fff", borderRadius: 12, padding: 24, width: "100%", maxWidth: 420, fontFamily: "'Helvetica Neue', Arial, sans-serif" }}>
+          <div style={{ background: "#fff", borderRadius: 12, padding: 24, width: "100%", maxWidth: 420, fontFamily: "'Helvetica Neue', Arial, sans-serif" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
               <h2 style={{ fontFamily: "'Iowan Old Style', Georgia, serif", fontSize: 19, margin: 0 }}>Nova candidatura</h2>
               <button type="button" onClick={() => setShowForm(false)} style={{ background: "transparent", border: "none", padding: 4 }}>
                 <X size={18} />
               </button>
             </div>
+            {formError && (
+              <div style={{ background: "#F6E3DF", color: "#8A3B2E", padding: "8px 12px", borderRadius: 6, fontSize: 13, marginBottom: 12 }}>
+                {formError}
+              </div>
+            )}
             <Field label="Empresa">
-              <input required value={form.empresa} onChange={(e) => setForm({ ...form, empresa: e.target.value })} style={inputStyle} />
+              <input value={form.empresa} onChange={(e) => setForm({ ...form, empresa: e.target.value })} style={inputStyle} />
             </Field>
             <Field label="Cargo">
-              <input required value={form.cargo} onChange={(e) => setForm({ ...form, cargo: e.target.value })} style={inputStyle} />
+              <input value={form.cargo} onChange={(e) => setForm({ ...form, cargo: e.target.value })} style={inputStyle} />
             </Field>
             <Field label="Link da vaga (opcional)">
               <input value={form.link} onChange={(e) => setForm({ ...form, link: e.target.value })} style={inputStyle} placeholder="https://..." />
@@ -240,10 +249,10 @@ export default function JobTracker() {
             <Field label="Notas (opcional)">
               <textarea value={form.notas} onChange={(e) => setForm({ ...form, notas: e.target.value })} style={{ ...inputStyle, minHeight: 60, resize: "vertical" }} />
             </Field>
-            <button type="submit" style={{ width: "100%", background: "#20261F", color: "#EEF1EC", border: "none", borderRadius: 8, padding: "11px 0", fontSize: 14, fontWeight: 600, marginTop: 8 }}>
+            <button type="button" onClick={addJob} style={{ width: "100%", background: "#20261F", color: "#EEF1EC", border: "none", borderRadius: 8, padding: "11px 0", fontSize: 14, fontWeight: 600, marginTop: 8 }}>
               Adicionar
             </button>
-          </form>
+          </div>
         </div>
       )}
     </div>
