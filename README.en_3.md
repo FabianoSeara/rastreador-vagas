@@ -11,7 +11,7 @@ A simple job application tracker to follow your job search from start to finish:
 
  Tech Stack
 
-- React 18** — via CDN (UMD), no bundler required
+- React 18 — via CDN (UMD), no bundler required
 - Babel Standalone — transpiles JSX directly in the browser
 - HTML5 + CSS3
 - localStorage — persists data in the browser
