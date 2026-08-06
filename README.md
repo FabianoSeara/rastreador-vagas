@@ -30,9 +30,9 @@ No Node.js, no `npm install`, no build step. Just serve `index.html` through a l
  Project structure
 
 ```
-├── index.html   # page structure and imports
-├── style.css    # global styles
-└── app.jsx      # React component (logic and UI)
+  index.html   # page structure and imports
+  style.css    # global styles
+  app.jsx      # React component (logic and UI)
 ```
 
  Notes
